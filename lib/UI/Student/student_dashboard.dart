@@ -6,6 +6,8 @@ import 'package:mplacementtracker/UI/Admin/Admin_Profile.dart';
 import 'package:mplacementtracker/UI/Student/student_profile.dart';
 import 'package:mplacementtracker/UI/widgets/header_widget.dart';
 
+import '../login_page.dart';
+
 
 
 class StudentDashboard extends StatefulWidget{
@@ -108,7 +110,7 @@ class _StudentDashboardState extends State<StudentDashboard>{
                 leading: Icon(Icons.logout_rounded, size: _drawerIconSize,color: Theme.of(context).accentColor,),
                 title: Text('Logout',style: TextStyle(fontSize: _drawerFontSize,color: Theme.of(context).accentColor),),
                 onTap: () {
-                  SystemNavigator.pop();
+                  Navigator.push( context, MaterialPageRoute(builder: (context) => LoginPage()),);
                 },
               ),
             ],

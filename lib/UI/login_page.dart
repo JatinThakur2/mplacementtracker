@@ -2,12 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mplacementtracker/UI/Admin/admin_dashboard.dart';
 import 'package:mplacementtracker/common/theme_helper.dart';
-
 import 'Student/student_dashboard.dart';
 import 'forgot_password_page.dart';
-import 'Admin/admin_dashboard.dart';
 import 'registration_page.dart';
 import 'widgets/header_widget.dart';
 
@@ -42,12 +39,10 @@ class _LoginPageState extends State<LoginPage>{
                   children: [
                     Text(
                       'Hello',
-                      style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-                    ),
+                      style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),),
                     Text(
                       'Signin into your account',
-                      style: TextStyle(color: Colors.grey),
-                    ),
+                      style: TextStyle(color: Colors.grey),),
                     SizedBox(height: 30.0),
                     Form(
                       key: _formKey,
@@ -75,8 +70,7 @@ class _LoginPageState extends State<LoginPage>{
                                 onTap: () {
                                   Navigator.push( context, MaterialPageRoute( builder: (context) => ForgotPasswordPage()), );
                                 },
-                                child: Text( "Forgot your password?", style: TextStyle( color: Colors.grey, ),
-                                ),
+                                child: Text( "Forgot your password?", style: TextStyle( color: Colors.grey, ), ),
                               ),
                             ),
                             Container(

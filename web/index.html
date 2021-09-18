@@ -25,7 +25,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="mplacementtracker">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
@@ -39,6 +39,19 @@
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
+    var firebaseConfig = {
+      apiKey: "...",
+      authDomain: "[YOUR_PROJECT].firebaseapp.com",
+      databaseURL: "https://[YOUR_PROJECT].firebaseio.com",
+      projectId: "[YOUR_PROJECT]",
+      storageBucket: "[YOUR_PROJECT].appspot.com",
+      messagingSenderId: "...",
+      appId: "1:...:web:...",
+      measurementId: "G-...",
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
     function loadMainDartJs() {
       if (scriptLoaded) {
         return;
