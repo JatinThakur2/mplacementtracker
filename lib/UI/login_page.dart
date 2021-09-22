@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mplacementtracker/UI/Admin/admin_dashboard.dart';
 import 'package:mplacementtracker/common/theme_helper.dart';
 import 'Student/student_dashboard.dart';
 import 'forgot_password_page.dart';
@@ -83,7 +84,7 @@ class _LoginPageState extends State<LoginPage>{
                                 ),
                                 onPressed: (){
                                   //After successful login we will redirect to profile page. Let's create profile page now
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => StudentDashboard()));
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminDashboard()));
                                 },
                               ),
                             ),

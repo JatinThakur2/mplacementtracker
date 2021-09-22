@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mplacementtracker/UI/Admin/addcompany.dart';
+import 'package:mplacementtracker/UI/login_page.dart';
 import 'package:mplacementtracker/UI/widgets/header_widget.dart';
-import '../forgot_password_verification_page.dart';
+import '../login_page.dart';
 
 class AdminProfile extends StatefulWidget{
 
@@ -111,7 +112,7 @@ class _AdminProfileState extends State<AdminProfile>{
                 leading: Icon(Icons.logout_rounded, size: _drawerIconSize,color: Theme.of(context).accentColor,),
                 title: Text('Logout',style: TextStyle(fontSize: _drawerFontSize,color: Theme.of(context).accentColor),),
                 onTap: () {
-                  SystemNavigator.pop();
+                 Navigator.push( context, MaterialPageRoute(builder: (context) => LoginPage()), );
                 },
               ),
             ],
