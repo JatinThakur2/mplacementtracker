@@ -1,18 +1,31 @@
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:mplacementtracker/UI/Student/student_dashboard.dart';
+import 'package:mplacementtracker/model/user.dart';
 import 'package:mplacementtracker/UI/widgets/header_widget.dart';
+import 'package:mplacementtracker/services/helper.dart';
+import '../../main.dart';
 import '../login_page.dart';
 
 class StudentProfile extends StatefulWidget{
+final User user;
+
+  StudentProfile({Key? key, required this.user}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-     return _StudentProfileState();
-  }
+  State createState() => _StudentProfileState();
 }
 
 class _StudentProfileState extends State<StudentProfile>{
+  late User user;
 
+  @override
+  void initState() {
+    super.initState();
+    user = widget.user;
+  }
   double  _drawerIconSize = 24;
   double _drawerFontSize = 17;
 
@@ -89,19 +102,22 @@ class _StudentProfileState extends State<StudentProfile>{
               Divider(color: Theme.of(context).primaryColor, height: 1,),
               ListTile(
                 leading: Icon(Icons.password_rounded, size: _drawerIconSize,color: Theme.of(context).accentColor,),
-                title: Text('Profile',style: TextStyle(fontSize: _drawerFontSize,color: Theme.of(context).accentColor),),
-                onTap: () {
-                  Navigator.push( context, MaterialPageRoute(builder: (context) => StudentProfile()),);
-                },
+                title: Text('Dashboard',style: TextStyle(fontSize: _drawerFontSize,color: Theme.of(context).accentColor),),
+                onTap: () async {
+                MyAppState.currentUser = null;
+                pushAndRemoveUntil(context, StudentDashboard(), true);
+                 },
               ),
               
               Divider(color: Theme.of(context).primaryColor, height: 1,),
               ListTile(
                 leading: Icon(Icons.logout_rounded, size: _drawerIconSize,color: Theme.of(context).accentColor,),
                 title: Text('Logout',style: TextStyle(fontSize: _drawerFontSize,color: Theme.of(context).accentColor),),
-                onTap: () {
-                  Navigator.push( context, MaterialPageRoute(builder: (context) => LoginPage()),);
-                },
+                 onTap: () async {
+                await auth.FirebaseAuth.instance.signOut();
+                MyAppState.currentUser = null;
+                pushAndRemoveUntil(context, LoginPage(), false);
+                 },
               ),
             ],
           ),
@@ -116,7 +132,7 @@ class _StudentProfileState extends State<StudentProfile>{
               margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Column(
-                children: [
+                children: <Widget>[
                   Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
@@ -127,10 +143,11 @@ class _StudentProfileState extends State<StudentProfile>{
                         BoxShadow(color: Colors.black12, blurRadius: 20, offset: const Offset(5, 5),),
                       ],
                     ),
-                    child: Icon(Icons.person, size: 80, color: Colors.grey.shade300,),
+                    child: 
+                    displayCircleImage(user.profilePictureURL, 100, false),
                   ),
                   SizedBox(height: 20,),
-                  Text('Name', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                  Text(user.name, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                   SizedBox(height: 20,),
                   Text('Student', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                   SizedBox(height: 10,),
@@ -172,7 +189,7 @@ class _StudentProfileState extends State<StudentProfile>{
                                         ListTile(
                                           leading: Icon(Icons.edit),
                                           title: Text("Roll No."),
-                                          subtitle: Text("180003"),
+                                          subtitle: Text(user.userID),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.contacts),
@@ -182,7 +199,7 @@ class _StudentProfileState extends State<StudentProfile>{
                                         ListTile(
                                           leading: Icon(Icons.email),
                                           title: Text("Email"),
-                                          subtitle: Text("abc@mmumullana.org"),
+                                          subtitle: Text(user.email),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.event_note),

@@ -1,16 +1,21 @@
 
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mplacementtracker/UI/Admin/admin_dashboard.dart';
 import 'package:mplacementtracker/common/theme_helper.dart';
-import 'Student/student_dashboard.dart';
+import 'package:mplacementtracker/model/user.dart';
+import 'package:mplacementtracker/services/authenticate.dart';
+import 'package:mplacementtracker/services/helper.dart';
+import '../constants.dart';
+import '../main.dart';
+import 'Student/student_profile.dart';
 import 'forgot_password_page.dart';
 import 'registration_page.dart';
 import 'widgets/header_widget.dart';
 
 class LoginPage extends StatefulWidget{
-  const LoginPage({Key? key}): super(key:key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -18,7 +23,9 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPageState extends State<LoginPage>{
   double _headerHeight = 250;
-  Key _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _key = new GlobalKey();
+  AutovalidateMode _validate = AutovalidateMode.disabled;
+  String? email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -38,31 +45,68 @@ class _LoginPageState extends State<LoginPage>{
                   margin: EdgeInsets.fromLTRB(20, 10, 20, 10),// This will be the login form
                 child: Column(
                   children: [
+                    // ignore: prefer_const_constructors
                     Text(
                       'Hello',
                       style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),),
+                    // ignore: prefer_const_constructors
                     Text(
-                      'Signin into your account',
+                      'Signin into syour account',
                       style: TextStyle(color: Colors.grey),),
                     SizedBox(height: 30.0),
                     Form(
-                      key: _formKey,
+                      key: _key,
+                      autovalidateMode: _validate,
                         child: Column(
-                          children: [
+                          children: <Widget>[
                             Container(
-                              child: TextField(
-                                decoration: ThemeHelper().textInputDecoration('User Name', 'Enter your user name'),
+                              child: TextFormField(
+                                
+                                 validator: validateEmail,
+                    onSaved: (val) => email = val,
+                    onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+                    style: TextStyle(fontSize: 18.0),
+                    keyboardType: TextInputType.emailAddress,
+                    cursorColor: Color(COLOR_PRIMARY),
+                    decoration: InputDecoration(
+                        contentPadding:
+                            new EdgeInsets.only(left: 16, right: 16),
+                        fillColor: Colors.white,
+                        hintText: 'E-mail Address',
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: BorderSide(
+                                color: Color(COLOR_PRIMARY), width: 2.0)),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ))
                               ),
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
                             SizedBox(height: 30.0),
                             Container(
-                              child: TextField(
-                                obscureText: true,
-                                decoration: ThemeHelper().textInputDecoration('Password', 'Enter your password'),
-                              ),
-                              decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                            ),
+                              child: TextFormField(
+                               validator: validatePassword,
+                    onSaved: (val) => password = val,
+                    onFieldSubmitted: (password) async {
+                      await login();
+                    },
+                    obscureText: true,
+                    textInputAction: TextInputAction.done,
+                    style: TextStyle(fontSize: 18.0),
+                    cursorColor: Color(COLOR_PRIMARY),
+                    decoration: InputDecoration(
+                        contentPadding:
+                            new EdgeInsets.only(left: 16, right: 16),
+                        fillColor: Colors.white,
+                        hintText: 'Password',
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: BorderSide(
+                                color: Color(COLOR_PRIMARY), width: 2.0)),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        )))),
                             SizedBox(height: 15.0),
                             Container(
                               margin: EdgeInsets.fromLTRB(10,0,10,20),
@@ -82,10 +126,7 @@ class _LoginPageState extends State<LoginPage>{
                                   padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
                                   child: Text('Sign In'.toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
                                 ),
-                                onPressed: (){
-                                  //After successful login we will redirect to profile page. Let's create profile page now
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminDashboard()));
-                                },
+                                onPressed: () => login(),
                               ),
                             ),
                             Container(
@@ -119,5 +160,31 @@ class _LoginPageState extends State<LoginPage>{
       ),
     );
 
+  }
+  login() async {
+    if (_key.currentState?.validate() ?? false) {
+      _key.currentState!.save();
+      await _loginWithEmailAndPassword();
+    } else {
+      setState(() {
+        _validate = AutovalidateMode.onUserInteraction;
+      });
+    }
+  }
+
+  _loginWithEmailAndPassword() async {
+    await showProgress(context, 'Logging in, please wait...', false);
+    dynamic result = await FireStoreUtils.loginWithEmailAndPassword(
+        email!.trim(), password!.trim());
+    await hideProgress();
+    if (result != null && result is User) {
+      MyAppState.currentUser = result;
+      pushAndRemoveUntil(context, StudentProfile(user: result), false);
+    } else if (result != null && result is String) {
+      showAlertDialog(context, 'Couldn\'t Authenticate', result);
+    } else {
+      showAlertDialog(
+          context, 'Couldn\'t Authenticate', 'Login failed, Please try again.');
+    }
   }
 }

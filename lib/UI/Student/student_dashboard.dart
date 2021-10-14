@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:mplacementtracker/UI/Admin/Addcompany.dart';
-import 'package:mplacementtracker/UI/Admin/Admin_Profile.dart';
 import 'package:mplacementtracker/UI/Student/student_profile.dart';
 import 'package:mplacementtracker/UI/widgets/header_widget.dart';
+import 'package:mplacementtracker/model/user.dart';
+import 'package:mplacementtracker/services/helper.dart';
 
+import '../../main.dart';
 import '../login_page.dart';
 
 
@@ -100,9 +100,7 @@ class _StudentDashboardState extends State<StudentDashboard>{
               ListTile(
                 leading: Icon(Icons.password_rounded, size: _drawerIconSize,color: Theme.of(context).accentColor,),
                 title: Text('Profile',style: TextStyle(fontSize: _drawerFontSize,color: Theme.of(context).accentColor),),
-                onTap: () {
-                  Navigator.push( context, MaterialPageRoute(builder: (context) => StudentProfile()),);
-                },
+                //  onPressed: () => login(),
               ),
              
               Divider(color: Theme.of(context).primaryColor, height: 1,),
