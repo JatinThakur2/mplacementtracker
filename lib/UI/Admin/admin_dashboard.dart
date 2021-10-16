@@ -121,15 +121,40 @@ class _AdminPageState extends State<AdminDashboard>{
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body: _buildListView(
         child: Stack(
           children: [
-            Container(height: 100, child: HeaderWidget(100,false,Icons.house_rounded),),
-           
+            Container(
+              height: 100,
+              child: HeaderWidget(100, false, Icons.house_rounded),
+            ),
           ],
         ),
       ),
     );
   }
 
+  // ignore: non_constant_identifier_names
+  ListView _buildListView({Stack? child}) {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (_, index) {
+        return Card(
+          child: ListTile(
+            title: Text('$index. Company'),
+            subtitle: Text('the sub'),
+            leading: Icon(Icons.thumb_up),
+            trailing: IconButton(
+              icon: Icon(Icons.arrow_forward),
+              onPressed:(){
+                Navigator.push( context, MaterialPageRoute(builder: (context) => AdminDashboard(),
+                )
+                );
+              }
+          ),
+        ),
+        );
+      },
+    );
+  }
 }

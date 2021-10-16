@@ -1,8 +1,12 @@
 
 import 'dart:io';
+import 'package:flutter/material.dart';
+
+
+import 'package:mplacementtracker/common/theme_helper.dart';
+
 import 'widgets/header_widget.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mplacementtracker/constants.dart';
@@ -174,18 +178,12 @@ final ImagePicker _imagePicker = ImagePicker();
                     validator: validateName,
                     onSaved: (val) => name = val,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 16),
-                        fillColor: Colors.white,
-                        hintText: 'Name',
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(
-                                color: Color(COLOR_PRIMARY), width: 2.0)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                        ))))),
+                    decoration: ThemeHelper().textInputDecoration("Name", "Enter Your Name" ),
+        ),
+         
+        ),
+        
+        ),
         ConstrainedBox(
             constraints: BoxConstraints(minWidth: double.infinity),
             child: Padding(
@@ -196,18 +194,11 @@ final ImagePicker _imagePicker = ImagePicker();
                     textInputAction: TextInputAction.next,
                     validator: validateEmail,
                     onSaved: (val) => email = val,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 16),
-                        fillColor: Colors.white,
-                        hintText: 'Email Address',
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(
-                                color: Color(COLOR_PRIMARY), width: 2.0)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                        ))))),
+                    decoration:ThemeHelper().textInputDecoration("Email", "Enter Your Email" ),
+                    ),
+                   
+                    ),
+                    ),
         ConstrainedBox(
             constraints: BoxConstraints(minWidth: double.infinity),
             child: Padding(
@@ -220,18 +211,7 @@ final ImagePicker _imagePicker = ImagePicker();
                   onSaved: (val) => password = val,
                   style: TextStyle(height: 0.8, fontSize: 18.0),
                   cursorColor: Color(COLOR_PRIMARY),
-                  decoration: InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                      fillColor: Colors.white,
-                      hintText: 'Password',
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide(
-                              color: Color(COLOR_PRIMARY), width: 2.0)),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ))),
+                  decoration:ThemeHelper().textInputDecoration("Password", "Enter Your Password" ),),
             )),
         ConstrainedBox(
           constraints: BoxConstraints(minWidth: double.infinity),
@@ -246,18 +226,7 @@ final ImagePicker _imagePicker = ImagePicker();
                 onSaved: (val) => confirmPassword = val,
                 style: TextStyle(height: 0.8, fontSize: 18.0),
                 cursorColor: Color(COLOR_PRIMARY),
-                decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    fillColor: Colors.white,
-                    hintText: 'Confirm Password',
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
-                            color: Color(COLOR_PRIMARY), width: 2.0)),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ))),
+                decoration:ThemeHelper().textInputDecoration("Confirm Password", "Enter Your Password" )),
           ),
         ),
         Padding(

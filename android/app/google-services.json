@@ -1,49 +1,49 @@
 {
   "project_info": {
-    "project_number": "314147336647",
-    "firebase_url": "https://login-test-18a26-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "login-test-18a26",
-    "storage_bucket": "login-test-18a26.appspot.com"
+    "project_number": "560072349518",
+    "firebase_url": "https://mplacementtrac-default-rtdb.firebaseio.com",
+    "project_id": "mplacementtrac",
+    "storage_bucket": "mplacementtrac.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:314147336647:android:5b6b9ac3124b19b0aaa9e2",
+        "mobilesdk_app_id": "1:560072349518:android:ee60340b544028a048f01f",
         "android_client_info": {
-          "package_name": "com.login.jatin"
+          "package_name": "com.mplacemettracker.jatin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "314147336647-hn4d86b9j0ljlb6u7e60io630q7frgn7.apps.googleusercontent.com",
+          "client_id": "560072349518-bgnnck142ngivko1h91fbh5740q3n98b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.login.jatin",
+            "package_name": "com.mplacemettracker.jatin",
             "certificate_hash": "6fb3e3c334951ea8b4cdb84b9a619be75cfb597d"
           }
         },
         {
-          "client_id": "314147336647-aboi1lln2mi92lct7rrarcqm3rfu0omh.apps.googleusercontent.com",
+          "client_id": "560072349518-p14e1067is36f9gkncst9vehk308n1g2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANf6_Y24L709WBOnyE6vfi-u4gqTF9YxM"
+          "current_key": "AIzaSyD4cHPsbX7TOCBxqCrk8JU8yQDVV1F7eO4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "314147336647-aboi1lln2mi92lct7rrarcqm3rfu0omh.apps.googleusercontent.com",
+              "client_id": "560072349518-p14e1067is36f9gkncst9vehk308n1g2.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "314147336647-jhg4hnv5alu6rm9042331la4nin660kl.apps.googleusercontent.com",
+              "client_id": "560072349518-0jgd9ne7en0e7j0ungrfdq3ui0a5i0nj.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.login.ios"
+                "bundle_id": "com.mplacementtracker.jatin"
               }
             }
           ]

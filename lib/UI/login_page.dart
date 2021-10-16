@@ -68,18 +68,7 @@ class _LoginPageState extends State<LoginPage>{
                     style: TextStyle(fontSize: 18.0),
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Color(COLOR_PRIMARY),
-                    decoration: InputDecoration(
-                        contentPadding:
-                            new EdgeInsets.only(left: 16, right: 16),
-                        fillColor: Colors.white,
-                        hintText: 'E-mail Address',
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(
-                                color: Color(COLOR_PRIMARY), width: 2.0)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                        ))
+                    decoration: ThemeHelper().textInputDecoration("Email", "Enter your email"),
                               ),
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
@@ -95,18 +84,10 @@ class _LoginPageState extends State<LoginPage>{
                     textInputAction: TextInputAction.done,
                     style: TextStyle(fontSize: 18.0),
                     cursorColor: Color(COLOR_PRIMARY),
-                    decoration: InputDecoration(
-                        contentPadding:
-                            new EdgeInsets.only(left: 16, right: 16),
-                        fillColor: Colors.white,
-                        hintText: 'Password',
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(
-                                color: Color(COLOR_PRIMARY), width: 2.0)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                        )))),
+                    decoration: ThemeHelper().textInputDecoration("Password", "Enter your Password"),
+                    ),
+                     decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                    ),
                             SizedBox(height: 15.0),
                             Container(
                               margin: EdgeInsets.fromLTRB(10,0,10,20),
