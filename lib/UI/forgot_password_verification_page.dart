@@ -4,7 +4,6 @@ import 'package:mplacementtracker/UI/login_page.dart';
 import 'package:mplacementtracker/common/theme_helper.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
-
 import 'widgets/header_widget.dart';
 
 class ForgotPasswordVerificationPage extends StatefulWidget {

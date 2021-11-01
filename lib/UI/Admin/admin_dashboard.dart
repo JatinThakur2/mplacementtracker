@@ -17,7 +17,6 @@ class AdminDashboard extends StatefulWidget{
 
 class _AdminPageState extends State<AdminDashboard>{
 
- 
   double  _drawerIconSize = 24;
   double _drawerFontSize = 17;
 
@@ -87,10 +86,8 @@ class _AdminPageState extends State<AdminDashboard>{
                 child: Container(
                   alignment: Alignment.bottomLeft,
                   child: Text("Admin",
-                    style: TextStyle(fontSize: 25,color: Colors.white, fontWeight: FontWeight.bold),
-                    
-                  
-                  ),
+                    style: TextStyle(fontSize: 25,color: Colors.white, fontWeight: FontWeight.bold),                    
+                   ),
                 ),
               ),
               Divider(color: Theme.of(context).primaryColor, height: 1,),

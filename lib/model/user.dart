@@ -11,19 +11,23 @@ class User {
 
   String appIdentifier;
 
+  String role;
+
   User(
       {this.email = '',
       this.name = '',
       this.userID = '',
-      this.profilePictureURL = ''})
-      : this.appIdentifier = 'Flutter Login Screen ${Platform.operatingSystem}';
+      this.profilePictureURL = '', 
+      this.role=''})
+      : this.appIdentifier = 'mplacemetTracker ${Platform.operatingSystem}';
 
   factory User.fromJson(Map<String, dynamic> parsedJson) {
     return new User(
         email: parsedJson['email'] ?? '',
         name: parsedJson['name'] ?? '',
         userID: parsedJson['id'] ?? parsedJson['userID'] ?? '',
-        profilePictureURL: parsedJson['profilePictureURL'] ?? '');
+        profilePictureURL: parsedJson['profilePictureURL'] ?? '',
+        role: parsedJson['role'] ?? '');
   }
 
   Map<String, dynamic> toJson() {
@@ -32,7 +36,8 @@ class User {
       'name': this.name,
       'id': this.userID,
       'profilePictureURL': this.profilePictureURL,
-      'appIdentifier': this.appIdentifier
+      'appIdentifier': this.appIdentifier,
+      'role':this.role
     };
   }
 }

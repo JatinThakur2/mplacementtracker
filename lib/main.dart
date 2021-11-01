@@ -11,15 +11,12 @@ class MyApp extends StatefulWidget {
   MyAppState createState() => MyAppState();
 }
 
-
 class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   static late User? currentUser;
 
   // Set default `_initialized` and `_error` state to false
   bool _initialized = false;
   bool _error = false;
-
-
   Color _primaryColor = HexColor('#DC54FE');
   Color _accentColor = HexColor('#8A02AE');
   void initializeFlutterFire() async {
