@@ -1,7 +1,5 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
-
 
 import 'package:mplacementtracker/common/theme_helper.dart';
 
@@ -17,13 +15,14 @@ import 'package:mplacementtracker/main.dart';
 import 'Student/student_profile.dart';
 
 File? _image;
-class RegistrationPage extends  StatefulWidget{
+
+class RegistrationPage extends StatefulWidget {
   @override
   State createState() => _RegistrationPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage>{
-final ImagePicker _imagePicker = ImagePicker();
+class _RegistrationPageState extends State<RegistrationPage> {
+  final ImagePicker _imagePicker = ImagePicker();
   TextEditingController _passwordController = TextEditingController();
   GlobalKey<FormState> _key = GlobalKey();
   AutovalidateMode _validate = AutovalidateMode.disabled;
@@ -32,35 +31,30 @@ final ImagePicker _imagePicker = ImagePicker();
   bool checkboxValue = false;
   double _headerHeight = 250;
 
- Widget build(BuildContext context) {
-   
+  Widget build(BuildContext context) {
     if (Platform.isAndroid) {
       retrieveLostData();
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-           children: [
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
               Container(
-  
-         height: 100, child: HeaderWidget(100,false,Icons.house_rounded),
-         
-        ),
-        SafeArea(
-           child: Form(
-            key: _key,
-            autovalidateMode: _validate,
-            child: formUI(),
+                height: 100,
+                child: HeaderWidget(100, false, Icons.house_rounded),
+              ),
+              SafeArea(
+                child: Form(
+                  key: _key,
+                  autovalidateMode: _validate,
+                  child: formUI(),
+                ),
+              ),
+            ],
           ),
-
-        ),
-           
-           ],
-        ),
-      )
-    );
+        ));
   }
 
   Future<void> retrieveLostData() async {
@@ -121,9 +115,7 @@ final ImagePicker _imagePicker = ImagePicker();
 
   Widget formUI() {
     return Column(
-      
       children: <Widget>[
-        
         Align(
             alignment: Alignment.center,
             child: Text(
@@ -147,7 +139,8 @@ final ImagePicker _imagePicker = ImagePicker();
                     width: 170,
                     height: 170,
                     child: _image == null
-                        ? Image.asset('assets/images/placeholder.jpg',
+                        ? Image.asset(
+                            'assets/images/placeholder.jpg',
                             fit: BoxFit.cover,
                           )
                         : Image.file(
@@ -170,48 +163,47 @@ final ImagePicker _imagePicker = ImagePicker();
           ),
         ),
         ConstrainedBox(
-            constraints: BoxConstraints(minWidth: double.infinity),
-            child: Padding(
-                padding:
-                    const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
-                child: TextFormField(
-                    validator: validateName,
-                    onSaved: (val) => name = val,
-                    textInputAction: TextInputAction.next,
-                    decoration: ThemeHelper().textInputDecoration("Name", "Enter Your Name" ),
-        ),
-         
-        ),
-        
+          constraints: BoxConstraints(minWidth: double.infinity),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
+            child: TextFormField(
+              validator: validateName,
+              onSaved: (val) => name = val,
+              textInputAction: TextInputAction.next,
+              decoration:
+                  ThemeHelper().textInputDecoration("Name", "Enter Your Name"),
+            ),
+          ),
         ),
         ConstrainedBox(
-            constraints: BoxConstraints(minWidth: double.infinity),
-            child: Padding(
-                padding:
-                    const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
-                child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    validator: validateEmail,
-                    onSaved: (val) => email = val,
-                    decoration:ThemeHelper().textInputDecoration("Email", "Enter Your Email" ),
-                    ),
-                   
-                    ),
-                    ),
+          constraints: BoxConstraints(minWidth: double.infinity),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
+            child: TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              validator: validateEmail,
+              onSaved: (val) => email = val,
+              decoration: ThemeHelper()
+                  .textInputDecoration("Email", "Enter Your Email"),
+            ),
+          ),
+        ),
         ConstrainedBox(
             constraints: BoxConstraints(minWidth: double.infinity),
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0, right: 8.0, left: 8.0),
               child: TextFormField(
-                  obscureText: true,
-                  textInputAction: TextInputAction.next,
-                  controller: _passwordController,
-                  validator: validatePassword,
-                  onSaved: (val) => password = val,
-                  style: TextStyle(height: 0.8, fontSize: 18.0),
-                  cursorColor: Color(COLOR_PRIMARY),
-                  decoration:ThemeHelper().textInputDecoration("Password", "Enter Your Password" ),),
+                obscureText: true,
+                textInputAction: TextInputAction.next,
+                controller: _passwordController,
+                validator: validatePassword,
+                onSaved: (val) => password = val,
+                style: TextStyle(height: 0.8, fontSize: 18.0),
+                cursorColor: Color(COLOR_PRIMARY),
+                decoration: ThemeHelper()
+                    .textInputDecoration("Password", "Enter Your Password"),
+              ),
             )),
         ConstrainedBox(
           constraints: BoxConstraints(minWidth: double.infinity),
@@ -226,33 +218,27 @@ final ImagePicker _imagePicker = ImagePicker();
                 onSaved: (val) => confirmPassword = val,
                 style: TextStyle(height: 0.8, fontSize: 18.0),
                 cursorColor: Color(COLOR_PRIMARY),
-                decoration:ThemeHelper().textInputDecoration("Confirm Password", "Enter Your Password" )),
+                decoration: ThemeHelper().textInputDecoration(
+                    "Confirm Password", "Enter Your Password")),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 40.0, left: 40.0, top: 40.0),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: double.infinity),
+          child: Container(
+            decoration: ThemeHelper().buttonBoxDecoration(context),
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Color(COLOR_PRIMARY),
-                padding: EdgeInsets.only(top: 12, bottom: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                  side: BorderSide(
-                    color: Color(COLOR_PRIMARY),
-                  ),
+              style: ThemeHelper().buttonStyle(),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+                child: Text(
+                  'Sign In'.toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
               ),
-              child: Text(
-                'Sign Up',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              onPressed: _signUp,
+              onPressed: () => _signUp(),
             ),
           ),
         ),
