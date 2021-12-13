@@ -1,6 +1,6 @@
 # mplacementtracker
 
-Institutes is a place where students enhance their skills and learn how they can stand out in a crowd. Placement is not only a critical aspect to attract good potential students, it also plays a vital role in waxing the reputation to serve better placements. The placement in institutes is usually handled by a specialized placement team. During several parallel placements, miscommunication or loss of notifications is quite common which sometimes created a poor impression of either the organization or their new hires.
+📚Institutes is a place where students enhance their skills and learn how they can stand out in a crowd. Placement is not only a critical aspect to attract good potential students, it also plays a vital role in waxing the reputation to serve better placements. The placement in institutes is usually handled by a specialized placement team. During several parallel placements, miscommunication or loss of notifications is quite common which sometimes created a poor impression of either the organization or their new hires.
 
 ## Getting Started
 
